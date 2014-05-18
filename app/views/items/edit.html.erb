@@ -1,6 +1,21 @@
 <h1>Editing item</h1>
 
-<%= render 'form' %>
+<%= form_tag edit_item_path, method: :get do %>
+  <div>
+    <%= text_field_tag :search, params[:search],
+                       placeholder: 'Search for Person ', type: :search, style: 'width: 400px' %>
+  </div>
+  <div><%= submit_tag 'Search' %></div>
+<% end %>
 
+
+
+<%= render 'form' %>
+<br>
+<div class="person">
+  <% @person.each do |person| %>
+    <%= render partial: 'person', locals: {person: person} %>
+  <% end %>
+</div>
 <%= link_to 'Show', @item %> |
 <%= link_to 'Back', items_path %>

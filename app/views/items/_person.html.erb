@@ -1,0 +1,18 @@
+<div class="person">
+
+  <%= form_for (@item) do |f| %>
+    <%= f.hidden_field :person_id, value: person.id %>
+    <%= f.submit 'Checkout Item to This Person' %>
+  <% end %>
+  <h5>ID #:</h5>
+  <italic><%= person.id %></italic>
+  <h5>Name:</h5>
+  <italic><%= person.first_name %> <%= person.last_name %></italic>
+  <h5>Address:</h5>
+  <italic><%= person.street_address %>, <%= person.city %> <%= person.state %> <%= person.zip_code %></italic>
+  <h5>Phone:</h5>
+  <italic><%= person.phone_number %></italic>
+  <h5>Case #:</h5>
+  <italic><%= person.case_number %></italic>
+</div>
+<hr/>

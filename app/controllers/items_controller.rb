@@ -21,6 +21,14 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    if params[:search].present? || params[:radius].present?
+      search = Person.search { fulltext params[:search] }
+      @person = search.results
+    else
+      @person = []
+    end
+  else
+    @new_person = Person.new
   end
 
   def create
@@ -64,7 +72,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.require(:item).permit(:source, :category, :location)
+    params.require(:item).permit(:source, :category, :location, :person_id)
   end
 end
 

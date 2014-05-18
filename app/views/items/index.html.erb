@@ -11,13 +11,6 @@
   <div><%= submit_tag 'Search' %></div>
 <% end %>
 
-
-<% form_tag items_path, :method => 'get' do %>
-    <p>
-      <%= text_field_tag :search, params[:search] %>
-      <%= submit_tag "Search", :name => nil %>
-    </p>
-<% end %>
 <table>
   <thead>
     <tr>
@@ -55,3 +48,12 @@
 </div>
 
 <%= link_to 'New Item', new_item_path %>
+
+<br>
+
+<%= link_to 'New Person', new_person_path %>
+<%= link_to 'View People', people_path %>
+
+<br>
+<%= link_to 'Dashboard', root_path %>
+
