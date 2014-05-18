@@ -26,13 +26,13 @@ feature 'user can crud donation form' do
     fill_in 'item[category]', with: 'food'
     fill_in 'item[location]', with: '24'
     click_on 'Create Item'
-    visit '/items/new'
 
-    click_on 'search'
+
+    visit '/items'
     fill_in 'search', with: '24'
     click_on 'Search'
-    expect(page).to have_content 'Source: Church'
-    expect(page).to_not have_content 'Source: Family'
+    expect(page).to have_content 'Church'
+    expect(page).to_not have_content 'Family'
 
   end
 end

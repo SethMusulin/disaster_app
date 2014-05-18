@@ -3,10 +3,12 @@ class ItemsController < ApplicationController
 
   # GET /items
   # GET /items.json
+
   def index
-    @items = Item.all
-    def index
-      @projects = Project.search(params[:search]).paginate(:page => params[:page])
+    if params[:search]
+      @items = Item.search(params[:search]).order("created_at DESC")
+    else
+      @items = Item.all.order('created_at DESC')
     end
   end
 
