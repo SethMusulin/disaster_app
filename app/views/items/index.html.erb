@@ -12,7 +12,6 @@
 <% end %>
 
 
-
 <% form_tag items_path, :method => 'get' do %>
     <p>
       <%= text_field_tag :search, params[:search] %>
@@ -22,6 +21,7 @@
 <table>
   <thead>
     <tr>
+      <th>Last Update</th>
       <th>ID</th>
       <th>Source</th>
       <th>Category</th>
@@ -34,7 +34,7 @@
   <tbody>
     <% @items.each do |item| %>
       <tr>
-
+        <td><%= item.updated_at.strftime("%Y-%m-%d") %></td>
         <td><%= item.id %></td>
         <td><%= item.source %></td>
         <td><%= item.category %></td>
