@@ -14,3 +14,11 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+$(document).ready(
+  function() {
+    setInterval(function() {
+      $('.item').load('/items/index');
+    }, 3000);
+  });

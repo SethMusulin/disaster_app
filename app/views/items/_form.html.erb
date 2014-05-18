@@ -22,8 +22,17 @@
   <div class="field">
     <%= f.label :location %><br>
     <%= f.text_field :location %>
+    <%= f.hidden_field :lat %>
+    <%= f.hidden_field :lon %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<script>
+  navigator.geolocation.getCurrentPosition(function(position) {
+    document.querySelector('#item_lat').value = position.coords.latitude;
+    document.querySelector('#item_lon').value = position.coords.longitude;
+  });
+</script>

@@ -1,13 +1,16 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /items
-  # GET /items.json
   def index
     @items = Item.all
-    def index
-      @projects = Project.search(params[:search]).paginate(:page => params[:page])
+    if params[:search].present? || params[:radius].present?
+      search = Item.search { fulltext params[:search] }
+      @filtered_items = search.results
+    else
+      @filtered_items = []
     end
+  else
+    @new_item = Item.new
   end
 
   # GET /items/1
@@ -66,13 +69,14 @@ class ItemsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item
-      @item = Item.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item
+    @item = Item.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_params
-      params.require(:item).permit(:source, :category, :location)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_params
+    params.require(:item).permit(:source, :category, :location)
+  end
 end
+
