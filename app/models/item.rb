@@ -1,5 +1,7 @@
 class Item < ActiveRecord::Base
 
+  belongs_to :person
+
   validates :source, :category, :location, presence: true
 
   searchable do
@@ -9,13 +11,5 @@ class Item < ActiveRecord::Base
     latlon(:location) { Sunspot::Util::Coordinates.new(lat, lon) }
   end
 
-
-  # def self.search(search)
-  #   if search
-  #     where 'source LIKE :search OR category LIKE :search OR location LIKE:search OR updated_at LIKE :Search', :search => "%#{search}%"
-  #   else
-  #     scoped
-  #   end
-  # end
 end
 
